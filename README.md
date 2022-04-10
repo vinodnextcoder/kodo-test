@@ -1,2 +1,10 @@
-# incubyte-co
- incubyte-software-craftsperson-hiring-challenge
+# graphql-mongodb-typescript-contactList
+
+# install 
+-- npm install
+
+# To Run
+-- npm run build:dev
+
+# To Test
+-- npm run test

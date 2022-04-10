@@ -1,0 +1,4 @@
+mongo_host_name=localhost:27017
+mongo_db_name=test
+PORT=4000
+auth_encryption_salt=test
