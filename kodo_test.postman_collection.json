@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "7b22b490-9cf6-4459-8bb3-bbfe651ff6f2",
+		"name": "kodo_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create  Records",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  addUser(\r\n    input: {\r\n      email: \"suervey@testss.com\"\r\n      description:\"kodo test\"\r\n      image:\"image path\"\r\n      name: \"The Lord of the Rings: The Return of the King\"\r\n      provider: \"self\",\r\n      contactType:\"personal\"\r\n      phone :\"999999999\"\r\n    }\r\n  ) {\r\n    status {\r\n      code\r\n      header\r\n      description\r\n      moreInfo\r\n    }\r\n    data {\r\n      name\r\n      description\r\n      image\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Records",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n  getUsers(search:\"the king\"\r\n  exactMatch:\"Yes\"){\r\n    status{\r\n      code\r\n      header\r\n      description\r\n    }\r\n    data{\r\n    pages\r\n      count\r\n      usersData{\r\n        name\r\n        description\r\n      }\r\n    }\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
