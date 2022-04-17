@@ -40,26 +40,6 @@ it('Should get token by email', async () => {
   expect(result.data);
 });
 
-it('Should get status code 9999', async () => {
-  const result = await testServer.executeOperation({
-    query: `query {
-      findByUserId(
-        id:"620fdb746bab7f283c4d46d"
-      ){
-      status {
-          code
-          header
-          description
-        }
-       data {
-        name
-          provider
-        }
-      }
-    }`
-  });
-  expect(result.data.findByUserId.status.code).equal(9999);
-});
 it('Should create new record', async () => {
   const result = await testServer.executeOperation({
     query: `mutation {
@@ -85,4 +65,28 @@ it('Should create new record', async () => {
     }`
   });
   expect(result.data.addUser.status.code)
+});
+
+it('Should get match', async () => {
+  const result = await testServer.executeOperation({
+    query: `query{
+      localSearch(search:"the king"
+      exactMatch:"no",page:1){
+        status{
+          code
+          header
+          description
+        }
+        data{
+        pages
+          count
+          usersData{
+            name
+            description
+          }
+        }
+      }
+    }`
+  });
+  expect(result.data.localSearch.status.code).equal(1000);
 });

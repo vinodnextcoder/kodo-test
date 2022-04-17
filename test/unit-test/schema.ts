@@ -2,6 +2,7 @@ const { gql } = require('apollo-server')
 
 const typeDefs = gql`
 
+
 type User {
   email: String
   name: String
@@ -16,9 +17,12 @@ type Records {
   usersData:[User]
   count:Int
   pages :Int
+  
+
 }
 type Query {
   getUsers(search:String, exactMatch:String, page :Int): getUsersData
+  localSearch(search:String, exactMatch:String, page :Int): getUsersData
 }
 type getUsersData {
 status:Status

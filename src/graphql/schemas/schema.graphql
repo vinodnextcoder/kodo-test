@@ -13,30 +13,18 @@ type Records {
   usersData:[User]
   count:Int
   pages :Int
+  
+
 }
 type Query {
   getUsers(search:String, exactMatch:String, page :Int): getUsersData
+  localSearch(search:String, exactMatch:String, page :Int): getUsersData
 }
 type getUsersData {
 status:Status
 data:Records
 }
 
-type Query {
-  findByUserId(id: String!): findByUserIdData
-}
-type findByUserIdData{
-  status:Status
-  data:User
-}
-
-type  deleteUsersData{
- status:Status
-}
-
-type Mutation {
-  deleteUser(id: String): deleteUsersData
-}
 
 type Query {
   token(email: String!): String!

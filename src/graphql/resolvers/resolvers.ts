@@ -15,8 +15,8 @@ const resolvers: IResolvers = {
     getUsers: (_: void, args: any, ctx: Context, _info: GraphQLResolveInfo) => {
       return usersController.getUsers(args, ctx);
     },
-    findByUserId: (_: void, args: any, ctx: Context, _info: GraphQLResolveInfo) => {
-      return usersController.findByUserId(args, ctx);
+    localSearch: (_: void, args: any, ctx: Context, _info: GraphQLResolveInfo) => {
+      return usersController.localSearch(args, ctx);
     }
   },
   Mutation: {
@@ -25,9 +25,6 @@ const resolvers: IResolvers = {
     },
     updateUser: (_, inputObject, ctx: Context) => {
       return usersController.updateUser(inputObject, ctx);
-    },
-    deleteUser: (_, inputObject, ctx: Context) => {
-      return usersController.deleteUser(inputObject, ctx);
     }
   }
 };

@@ -1,7 +1,11 @@
 import { Context } from '../models/context';
 import { buildErrorResponse } from '../utils/buildErrorResponse';
 import { successResponse } from '../utils/successResponse'
+import{ HelperUtil } from '../utils/helper'
+// const HelperUtil = new HelperUtil();
 const Users = require('../models/users');
+import jsonData from  '../constants/mock_data.json'
+
 
 export class UsersController {
   async addUser(inputObject: any, ctx: Context) {
@@ -75,11 +79,27 @@ export class UsersController {
     }
   }
 
-  async findByUserId(inputObject: any, ctx: Context) {
+
+  async localSearch(inputObject: any, ctx: Context) {
     try {
-      const result = await Users.findById(inputObject.id)
-      console.log(result)
-      return successResponse(result, 'deleted');
+      const result = await jsonData;
+      /**
+       * validation for page
+       */
+      if(inputObject.page < 1 || !inputObject.search){
+        return buildErrorResponse(null);
+      }
+      /**
+       * search query function
+       */
+      const searchQuery = await HelperUtil.searchInArray(inputObject.search, result,"name", inputObject.exactMatch, inputObject.page);
+      const response = {
+        count:searchQuery.total,
+        pages:searchQuery.total_pages,
+        usersData:searchQuery.data
+      }
+    
+      return successResponse(response, 'fetch');
     } catch (error) {
       return buildErrorResponse(error)
     }
