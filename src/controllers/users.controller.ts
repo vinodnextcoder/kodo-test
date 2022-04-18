@@ -2,8 +2,10 @@ import { Context } from '../models/context';
 import { buildErrorResponse } from '../utils/buildErrorResponse';
 import { successResponse } from '../utils/successResponse'
 import{ HelperUtil } from '../utils/helper'
-// const HelperUtil = new HelperUtil();
 const Users = require('../models/users');
+/**
+ * this for import json data from local
+ */
 import jsonData from  '../constants/mock_data.json'
 
 
@@ -58,27 +60,6 @@ export class UsersController {
       return buildErrorResponse(error)
     }
   }
-  async updateUser(inputObject: any, ctx: Context) {
-    try {
-      const result = await Users.findOneAndUpdate({ _id: inputObject.id }, inputObject.input);
-      if (result) {
-        return successResponse(result, 'updated');
-      }
-      return successResponse(result, 'notUpdated');
-    } catch (error) {
-      return buildErrorResponse(error)
-    }
-  }
-
-  async deleteUser(inputObject: any, ctx: Context) {
-    try {
-      const result = await Users.findOneAndDelete({ _id: inputObject.id })
-      return successResponse(result, 'deleted');
-    } catch (error) {
-      return buildErrorResponse(error)
-    }
-  }
-
 
   async localSearch(inputObject: any, ctx: Context) {
     try {

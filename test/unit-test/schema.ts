@@ -53,10 +53,6 @@ type Mutation {
   addUser(input: InputUser!): userData
 }
 
-type Mutation {
-  updateUser(id: String, input: InputUser!): userData
-}
-
 input InputUser {
   email: String
   name: String
